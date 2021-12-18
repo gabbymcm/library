@@ -1,3 +1,31 @@
-h1 {
-    color: blue;
+body {
+    font-family: 'Playfair Display', serif;
+    background-color: #d9dade;
+}
+
+.bookBox {
+    border: 2px dotted black;
+    border-radius: 3px;
+    width: 200px;
+    padding: 20px;
+    margin: 20px;
+
+}
+
+.enteredBooks {
+    display: flex;
+    border: 2px solid black;    
+
+}
+
+.bookAuthor {
+    font-style: italic;
+}
+
+#submit {
+    font-family: 'Playfair Display', serif;
+    margin: 20px;
+    background-color: #373845;
+    color: #d9dade;
+
 }
