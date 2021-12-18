@@ -28,7 +28,7 @@ function getInputFromForm() {
 getInputFromForm();
 
 
-
+// add new books to the library
 
 function addBooksToLibrary(newBook) {
     myLibrary.push(newBook);
@@ -55,11 +55,6 @@ function addBooksToLibrary(newBook) {
         bookRead.textContent = "Not read";
     };
 
-    /*var bookContent = document.createElement('p');
-    bookContent.textContent = newBook.title + " " + newBook.author + " " + newBook.pages + " pages " + newBook.read;
-
-    bookBox.appendChild(bookContent); */
-
     bookBox.appendChild(bookTitle);
     bookBox.appendChild(bookAuthor);
     bookBox.appendChild(bookPages);
@@ -67,7 +62,6 @@ function addBooksToLibrary(newBook) {
 
 }
 
-// add new books to the library
 
 
 
