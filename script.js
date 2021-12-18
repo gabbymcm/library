@@ -20,7 +20,12 @@ function getInputFromForm() {
     var pages = document.getElementById('pages');
     var read = document.getElementById('read');
     submit.addEventListener('click', () => {
-        book = new Book(title.value, author.value, pages.value, read.value);
+        if (read.checked){
+            book = new Book(title.value, author.value, pages.value, "Read");
+        } else {
+            book = new Book(title.value, author.value, pages.value, "Not Read");
+        }
+        
         addBooksToLibrary(book);
     });
 };
@@ -49,11 +54,7 @@ function addBooksToLibrary(newBook) {
     bookPages.textContent = newBook.pages + " pages";
     var bookRead = document.createElement('p');
     bookRead.classList.add('bookRead');
-    if (newBook.read.checked){
-        bookRead.textContent = "Read";
-    } else {
-        bookRead.textContent = "Not read";
-    };
+    bookRead.textContent = newBook.read;
 
     bookBox.appendChild(bookTitle);
     bookBox.appendChild(bookAuthor);
