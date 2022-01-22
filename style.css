@@ -1,31 +1,77 @@
 body {
-    font-family: 'Playfair Display', serif;
-    background-color: #d9dade;
+    font-family: 'Quicksand', sans-serif;
+    margin: 0;
+    padding: 0;
 }
 
-.bookBox {
-    border: 2px dotted black;
-    border-radius: 3px;
-    width: 200px;
-    padding: 20px;
-    margin: 20px;
-
+main {
+    display: grid;
+    grid-template-columns: 75% 25%;
+    height: 100vh;
 }
 
-.enteredBooks {
-    display: flex;
-    border: 2px solid black;    
-
+header{
+    background-color: #014c59;
 }
 
-.bookAuthor {
-    font-style: italic;
+header h1 {
+    margin: 0;
+    padding: 10px;
+    color: #c5dfe3;
+}
+
+aside {
+    background-color: #c5dfe3;
+    padding: 5px;
+    font-weight: bold;
+}
+
+input {
+    border-radius: 10px;
 }
 
 #submit {
-    font-family: 'Playfair Display', serif;
-    margin: 20px;
-    background-color: #373845;
-    color: #d9dade;
+    padding: 5px 10px;
+    background-color: #014c59;
+    color: #c5dfe3;
+    align-self: center;
+    font-weight: bold;
+}
 
+#submit:hover {
+    background-color: #277d8c;
+}
+
+fieldset {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    border: none;
+}
+
+.library {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.bookBox {
+    background-color: #014c59;
+    color: #c5dfe3;
+    border-radius: 3px;
+    width: 200px;
+    height: 200px;
+    padding: 20px;
+    margin: 20px;
+}
+
+.remove, .readBtn {
+    background-color: #a32632;
+    border-radius: 10px;
+    padding: 5px 10px;
+    color: #c5dfe3;
+    align-self: flex-end;
+}
+
+.readBtn {
+    float: right;
 }

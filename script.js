@@ -1,70 +1,118 @@
-const submit = document.getElementById('submit');
+let myLibrary = []
 
-let myLibrary = [];
+const submit = document.getElementById("submit")
 
-
-
-// set up the book object
-function Book(title, author, pages, read){
-    this.title = title;
-    this.author = author;
-    this.pages = pages;
-    this.read = read;
-};
-
-let book = [];
-// create new books
-function getInputFromForm() {
-    var title = document.getElementById('title');
-    var author = document.getElementById('author');
-    var pages = document.getElementById('pages');
-    var read = document.getElementById('read');
-    submit.addEventListener('click', () => {
-        if (read.checked){
-            book = new Book(title.value, author.value, pages.value, "Read");
-        } else {
-            book = new Book(title.value, author.value, pages.value, "Not Read");
-        }
-        
-        addBooksToLibrary(book);
-    });
-};
-
-getInputFromForm();
-
-
-// add new books to the library
-
-function addBooksToLibrary(newBook) {
-    myLibrary.push(newBook);
-
-    var display = document.getElementById('enteredBooks');
-    var bookBox = document.createElement('div');
-    bookBox.classList.add('bookBox');
-    display.appendChild(bookBox);
-    
-    var bookTitle = document.createElement('h1');
-    bookTitle.classList.add('bookTitle');
-    bookTitle.textContent = newBook.title;
-    var bookAuthor = document.createElement('p');
-    bookAuthor.classList.add('bookAuthor');
-    bookAuthor.textContent = newBook.author;
-    var bookPages = document.createElement('p');
-    bookPages.classList.add('bookPages');
-    bookPages.textContent = newBook.pages + " pages";
-    var bookRead = document.createElement('p');
-    bookRead.classList.add('bookRead');
-    bookRead.textContent = newBook.read;
-
-    bookBox.appendChild(bookTitle);
-    bookBox.appendChild(bookAuthor);
-    bookBox.appendChild(bookPages);
-    bookBox.appendChild(bookRead);
-
+//set up the book object
+function Book(title, author, pages, read) {
+    this.title = title
+    this.author = author
+    this.pages = pages
+    this.read = read
 }
 
 
 
+// Create a new book
+function createNewBook() {
+    let title = document.getElementById("title")
+    let author = document.getElementById("author")
+    let pages = document.getElementById("pages")
+    let read = document.getElementById("read")
+    submit.addEventListener('click', () => {
+        if(read.checked) {
+            book = new Book(title.value, author.value, pages.value, "Read")
+        } else {
+            book = new Book(title.value, author.value, pages.value, "Not Read")
+        }
+        addBookToLibrary(book)
+        createLibrary(book)
+        saveData()
+        updateDisplay()
+    })
+}
+
+// Add the new book to myLibrary
+function addBookToLibrary(newBook) {
+    myLibrary.push(newBook)
+}
+
+// Update visual library
+function createLibrary(newBook) {
+    const library = document.getElementsByClassName('library')[0]
+    const bookBox = document.createElement('div')
+    bookBox.classList.add('bookBox')
+    library.appendChild(bookBox)
+    
+    const bookTitle = document.createElement('h1')
+    bookTitle.classList.add('bookTitle')
+    bookTitle.textContent = newBook.title
+    bookBox.appendChild(bookTitle)
+
+    const bookAuthor = document.createElement('p')
+    bookAuthor.classList.add('bookAuthor')
+    bookAuthor.textContent = newBook.author
+    bookBox.appendChild(bookAuthor)
+
+    const bookPages = document.createElement('p')
+    bookPages.classList.add('bookPages')
+    bookPages.textContent = newBook.pages + " pages"
+    bookBox.appendChild(bookPages)
+
+    const bookRead = document.createElement('p')
+    bookRead.classList.add('bookRead')
+    bookRead.textContent = newBook.read
+    bookBox.appendChild(bookRead)
+
+    const removeBtn = document.createElement('button')
+    removeBtn.classList.add('remove')
+    removeBtn.textContent = "X"
+    bookBox.appendChild(removeBtn)
+
+    removeBtn.addEventListener('click', () => {
+        myLibrary.splice(myLibrary.indexOf(newBook), 1)
+        saveData()
+        updateDisplay()
+    })
+
+    const readBtn = document.createElement('button')
+    readBtn.classList.add('readBtn')
+    readBtn.textContent = "Toggle Read"
+    bookBox.appendChild(readBtn)
+
+    readBtn.addEventListener('click', () => {
+        //access item from myLibray
+        // myLibrary.indexOf(newBook).read = !myLibrary.indexOf(newBook).read
+        //update data under 'read'
+        //update display
+        saveData()
+        updateDisplay()
+    })
 
 
+}
 
+// save library data locally
+function saveData () {
+    localStorage.setItem('myLibrary', JSON.stringify(myLibrary))
+}
+
+
+// update the display
+function updateDisplay () {
+    var refresh = JSON.parse(localStorage.getItem('myLibrary'))
+    myLibrary = refresh
+    displayLibrary(myLibrary)
+}
+
+function displayLibrary() {
+    const library = document.getElementsByClassName('library')[0]
+    const books = document.querySelectorAll('.bookBox')
+    books.forEach(book => library.removeChild(book))
+
+    for (let i = 0; i < myLibrary.length; i++){
+        createLibrary(myLibrary[i])
+    }
+}
+
+// run functions
+createNewBook()
