@@ -120,11 +120,9 @@ function saveData () {
 
 // update the display
 function updateDisplay () {
-    if (myLibrary.length) {
         var refresh = JSON.parse(localStorage.getItem('myLibrary'))
         myLibrary = refresh
         displayLibrary(myLibrary)
-    }
 }
 
 function displayLibrary() {
@@ -140,4 +138,4 @@ function displayLibrary() {
 // run functions
 createNewBook()
 
-updateDisplay()
+displayLibrary(myLibrary);
