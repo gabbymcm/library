@@ -15,3 +15,4 @@ To view the project click here: https://gabbymcm.github.io/library/
 2. Objects and prototypes
 3. Local Storage
 4. HTML Forms
+5. Form validation
