@@ -65,13 +65,24 @@ fieldset {
 }
 
 .remove, .readBtn {
-    background-color: #a32632;
+    background-color: #c5dfe3;
     border-radius: 10px;
     padding: 5px 10px;
-    color: #c5dfe3;
+    color: #014c59;
     align-self: flex-end;
+    font-weight: bold;
 }
 
 .readBtn {
     float: right;
+}
+
+.remove:hover {
+    background-color: #a80b00;
+    color: #c5dfe3;
+}
+
+.readBtn:hover {
+    background-color: #00a884;
+    color: #c5dfe3;
 }

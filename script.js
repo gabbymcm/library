@@ -19,11 +19,7 @@ function createNewBook() {
     let pages = document.getElementById("pages")
     let read = document.getElementById("read")
     submit.addEventListener('click', () => {
-        if(read.checked) {
-            book = new Book(title.value, author.value, pages.value, "Read")
-        } else {
-            book = new Book(title.value, author.value, pages.value, "Not Read")
-        }
+        book = new Book(title.value, author.value, pages.value, read)
         addBookToLibrary(book)
         createLibrary(book)
         saveData()
@@ -60,7 +56,11 @@ function createLibrary(newBook) {
 
     const bookRead = document.createElement('p')
     bookRead.classList.add('bookRead')
-    bookRead.textContent = newBook.read
+    if(newBook.read.checked){
+        bookRead.textContent = "Read"
+    } else {
+        bookRead.textContent = "Not Read"
+    }
     bookBox.appendChild(bookRead)
 
     const removeBtn = document.createElement('button')
@@ -80,15 +80,10 @@ function createLibrary(newBook) {
     bookBox.appendChild(readBtn)
 
     readBtn.addEventListener('click', () => {
-        //access item from myLibray
-        // myLibrary.indexOf(newBook).read = !myLibrary.indexOf(newBook).read
-        //update data under 'read'
-        //update display
+        newBook.read = !newBook.read
         saveData()
         updateDisplay()
     })
-
-
 }
 
 // save library data locally
