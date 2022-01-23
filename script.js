@@ -26,6 +26,8 @@ function processForm(e) {
         updateDisplay()
     }
 
+    form.reset()
+    
     return false
 }
 
@@ -106,7 +108,6 @@ function createLibrary(newBook) {
 
     readBtn.addEventListener('click', () => {
         newBook.read = !newBook.read
-        console.log(newBook)
         saveData()
         updateDisplay()
     })
