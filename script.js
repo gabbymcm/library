@@ -120,7 +120,7 @@ function saveData () {
 
 // update the display
 function updateDisplay () {
-    if (myLibrary.length != 0) {
+    if (myLibrary.length) {
         var refresh = JSON.parse(localStorage.getItem('myLibrary'))
         myLibrary = refresh
         displayLibrary(myLibrary)
