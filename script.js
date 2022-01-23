@@ -108,3 +108,5 @@ function displayLibrary() {
 
 // run functions
 createNewBook()
+
+updateDisplay()
