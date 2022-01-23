@@ -10,25 +10,30 @@ function Book(title, author, pages, read) {
     this.read = read
 }
 
-// Create a new book
-function createNewBook() {
+function processForm(e) {
+    if (e.preventDefault) e.preventDefault()
+
     let title = document.getElementById("title")
     let author = document.getElementById("author")
     let pages = document.getElementById("pages")
     let read = document.getElementById("read")
 
-    submit.addEventListener('click', () => {
-        validateForm()
-        if (validate){
-            book = new Book(title.value, author.value, pages.value, read.checked)
-            addBookToLibrary(book)
-            createLibrary(book)
-            saveData()
-            updateDisplay()
-        } else {
-            document.getElementById("bookForm").reset()
-        }
-    })
+    validateForm()
+    if (validate){
+        let book = new Book(title.value, author.value, pages.value, read.checked)
+        myLibrary.push(book)
+        saveData()
+        updateDisplay()
+    }
+
+    return false
+}
+
+var form = document.getElementById("bookForm")
+if (form.attachEvent){
+    form.attachEvent("submit", processForm)
+} else {
+    form.addEventListener("submit", processForm)
 }
 
 let validate = true
@@ -52,11 +57,6 @@ function validateForm(){
         alert("Number of pages cannot be left blank")
         return validate = false
     }
-}
-
-// Add the new book to myLibrary
-function addBookToLibrary(newBook) {
-    myLibrary.push(newBook)
 }
 
 // Update visual library
@@ -120,12 +120,13 @@ function saveData () {
 
 // update the display
 function updateDisplay () {
-        var refresh = JSON.parse(localStorage.getItem('myLibrary'))
-        myLibrary = refresh
-        displayLibrary(myLibrary)
+    var refresh = JSON.parse(localStorage.getItem('myLibrary'))
+    myLibrary = refresh
+    displayLibrary(myLibrary)
+
 }
 
-function displayLibrary() {
+function displayLibrary () {
     const library = document.getElementsByClassName('library')[0]
     const books = document.querySelectorAll('.bookBox')
     books.forEach(book => library.removeChild(book))
@@ -135,5 +136,8 @@ function displayLibrary() {
     }
 }
 
-// run functions
-createNewBook()
+window.onload = function(){
+    if (myLibrary){
+        updateDisplay()
+    }
+}
