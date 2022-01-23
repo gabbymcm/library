@@ -137,5 +137,3 @@ function displayLibrary() {
 
 // run functions
 createNewBook()
-
-displayLibrary(myLibrary);
