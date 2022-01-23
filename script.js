@@ -10,8 +10,6 @@ function Book(title, author, pages, read) {
     this.read = read
 }
 
-
-
 // Create a new book
 function createNewBook() {
     let title = document.getElementById("title")
@@ -19,7 +17,7 @@ function createNewBook() {
     let pages = document.getElementById("pages")
     let read = document.getElementById("read")
     submit.addEventListener('click', () => {
-        book = new Book(title.value, author.value, pages.value, read)
+        book = new Book(title.value, author.value, pages.value, read.checked)
         addBookToLibrary(book)
         createLibrary(book)
         saveData()
@@ -54,15 +52,7 @@ function createLibrary(newBook) {
     bookPages.textContent = newBook.pages + " pages"
     bookBox.appendChild(bookPages)
 
-    const bookRead = document.createElement('p')
-    bookRead.classList.add('bookRead')
-    if(newBook.read.checked){
-        bookRead.textContent = "Read"
-    } else {
-        bookRead.textContent = "Not Read"
-    }
-    bookBox.appendChild(bookRead)
-
+    //delete button
     const removeBtn = document.createElement('button')
     removeBtn.classList.add('remove')
     removeBtn.textContent = "X"
@@ -74,13 +64,20 @@ function createLibrary(newBook) {
         updateDisplay()
     })
 
+    // read button and toggle on each individual book
     const readBtn = document.createElement('button')
     readBtn.classList.add('readBtn')
-    readBtn.textContent = "Toggle Read"
+    if (newBook.read === false){
+        readBtn.textContent = "Not Read"
+
+    } else {
+        readBtn.textContent = "Read"
+    }
     bookBox.appendChild(readBtn)
 
     readBtn.addEventListener('click', () => {
         newBook.read = !newBook.read
+        console.log(newBook)
         saveData()
         updateDisplay()
     })
