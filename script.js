@@ -16,13 +16,42 @@ function createNewBook() {
     let author = document.getElementById("author")
     let pages = document.getElementById("pages")
     let read = document.getElementById("read")
+
     submit.addEventListener('click', () => {
-        book = new Book(title.value, author.value, pages.value, read.checked)
-        addBookToLibrary(book)
-        createLibrary(book)
-        saveData()
-        updateDisplay()
+        validateForm()
+        if (validate){
+            book = new Book(title.value, author.value, pages.value, read.checked)
+            addBookToLibrary(book)
+            createLibrary(book)
+            saveData()
+            updateDisplay()
+        } else {
+            document.getElementById("bookForm").reset()
+        }
     })
+}
+
+let validate = true
+
+function validateForm(){
+    validate = true
+    let x = document.forms["bookForm"]["title"].value
+    if (x == "") {
+        alert("Title cannot be left blank")
+        return validate = false
+    }
+
+    let y = document.forms["bookForm"]["author"].value
+    if (y == "") {
+        alert("Author cannot be left blank")
+        return validate = false
+    }
+
+    let z = document.forms["bookForm"]["pages"].value
+    if (z == "") {
+        alert("Number of pages cannot be left blank")
+        return validate = false
+    }
 }
 
 // Add the new book to myLibrary
@@ -108,5 +137,4 @@ function displayLibrary() {
 
 // run functions
 createNewBook()
-
 updateDisplay()
