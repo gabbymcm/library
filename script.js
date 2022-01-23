@@ -1,3 +1,5 @@
+let myLibrary = []
+
 const submit = document.getElementById("submit")
 
 //set up the book object
@@ -131,12 +133,5 @@ function displayLibrary () {
 
     for (let i = 0; i < myLibrary.length; i++){
         createLibrary(myLibrary[i])
-    }
-}
-
-window.onload = function(){
-    let myLibrary = []
-    if (myLibrary.length >= 1){
-        updateDisplay()
     }
 }
