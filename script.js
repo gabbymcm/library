@@ -137,7 +137,7 @@ function displayLibrary () {
 }
 
 window.onload = function(){
-    if (myLibrary){
+    if (myLibrary.length){
         updateDisplay()
     }
 }
