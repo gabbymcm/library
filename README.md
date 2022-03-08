@@ -2,7 +2,7 @@
 Creating a small library app to better understand objects and prototypes 
 
 # Live Link
-To view the project click here: https://gabbymcm.github.io/library/
+To view the project click here: https://gabmcm.github.io/library/
 
 # Features
 1. Input Title, Author, Pages, Read/Not Read to add new books to the library
